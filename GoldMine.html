@@ -1,0 +1,102 @@
+<style>
+h1 {
+  color: green;
+}
+p {
+  color: green;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.main-box{
+    display:grid;
+    width:70%;
+    box-shadow: 5px 5px #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px 0;
+}
+.big-circle{
+    width: 150px;
+    height: 150px;
+    border: 10px solid #7DCEA0;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+    background-image: url("au.jpeg");
+    background-position: center;
+    background-size: cover;
+}
+.b1{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    font-family: "Roboto", sans-serif;
+    align-items: center;
+	justify-content: center;
+}
+.small-circle{
+    width: 125px;
+    height: 125px;
+    border: 5px solid #7DCEA0;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+    background-image: url("bills.jpeg");
+    background-position: center;
+    background-size: cover;
+}
+
+</style>
+<body>
+<div class="b1">
+<div class="main-box">
+	<h1></h1>
+  <h1>Welcome to Sleepy's Gold Mine</h1>
+        <div class="big-circle"></div>
+  <h1>Learn how much would your investment in gold be worth today</h1>
+  <p>Enter Year Here (1900-2020)</p><input type="number" name="a" id="a"><br>
+  <div><button class="button" onclick="add(document.getElementById('a').value)">Check</button></div>
+  <p id="p1"></p>
+        <div class="small-circle"></div>
+</div>
+</div>
+  <script>
+    function add(a) {
+      var n = parseInt(a, 10);
+	  if(n < 1900 || n >= 2021){
+		document.getElementById("p1").innerHTML = "The year entered was not in between 1900 and 2020";
+	  }
+	  else{
+		var offset = 2021 - n;
+		const ray = [1804.83, 1773.73, 1393.34,1268.93,1260.39,1251.92,1158.86,1266.06,1409.51,1668.86,1573.16,1226.66,973.66,872.37,696.43,604.34,444.99,409.53,363.83,310.08,271.19,279.29,278.86,294.12,331.00,387.73,384.07,384.16,360.05,343.87,362.34,383.73,381.27,436.78,446.84,368.20,317.42,360.65,423.71,376.11,459.16,614.75,307.01,193.57,147.84,124.80,160.87,158.76,97.12,58.17,40.80,35.96,41.10,35.94,35.94,35.94,35.12,35.12,35.12,35.12,35.12,35.27,35.27,35.27,35.27,35.27,35.03,35.03,35.03,35.03,35.03,34.72,34.72,34.72,34.72,34.72,34.72,34.72,34.72,34.72,34.72,33.85,33.85,33.85,33.85,33.85,33.85,33.85,33.85,33.85,33.85,20.65,20.65,20.65,20.65,20.65,20.65,20.65,20.65,20.65, 20.65, 20.68, 20.68, 20.68, 20.68, 20.68, 20.68, 20.68, 20.68, 20.68, 20.68, 20.64, 20.64, 20.64, 20.64, 20.64, 20.64, 20.64, 20.64, 20.64, 20.64, 20.64];
+		rate= Math.exp((Math.log(ray[0]/ray[offset]))/offset)
+		y = Math.pow(rate,offset);
+		document.getElementById("p1").innerHTML = "If you invested a $20 Bill in gold in "+n+" and reinvested your earnings each year, it would be worth " + Math.trunc(y)+ " $20 bills today";
+	  }
+    }
+  </script>
+</body>
